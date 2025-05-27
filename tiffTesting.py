@@ -9,19 +9,20 @@ def view_tiff(tiff_path):
 
     try:
         image_array = np.array(image)
-        img = Image.new("RGB", (1024, 1024)) #create space to draw
+        print(image_array)
+        img = Image.new("RGBA", (1024, 1024)) #create space to draw
         rcount = 0
         ccount = 0
         for row in image_array:
             for col in row:
                 temp = ((int(col[0])), int(col[1]), int(col[2]))
                 img.putpixel((rcount, ccount), value=temp)
-                print(f'img.putpixel(({rcount}, {ccount}), value={temp})')
+                #print(f'img.putpixel(({rcount}, {ccount}), value={temp})')
                 ccount += 1
+
 
             ccount = 0
             rcount += 1
-        img.show()
     except FileNotFoundError:
         print(f"Error: File not found at {tiff_path}")
     except Exception as e:
