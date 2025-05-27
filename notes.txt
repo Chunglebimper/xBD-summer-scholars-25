@@ -1,0 +1,3 @@
+The images from the dataset are 32-bit which means they can display transparency
+The PIL library cannot handle these images but it can handle downscaled version
+Alpha means how transparent a pixel is where 0 is (fully) transparent and 255 is opaque
