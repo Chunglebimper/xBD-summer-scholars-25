@@ -90,18 +90,19 @@ def TweakedDisplay(PATH):
 
 
 #############################################################################################################
-PATHS = ['processed']
+PATHS = ['processed', 'processed/splits']
 for PATH in PATHS:
     os.makedirs(PATH, exist_ok=True)        #automatically handles directory creation
 
 """CONSTANTS"""
-GEO_PATH = 'geotiffs/tier1/images/mexico-earthquake_00000192_post_disaster.tif'
+GEO_PATH = 'geotiffs/tier1/images/mexico-earthquake_00000049_post_disaster.tif'
 #GEO_PATH = "geotiffs/tier3/images/joplin-tornado_00000000_post_disaster.tif" # change to image location
 
 #############################################################################################################
 
 if __name__ == '__main__':
     TweakedDisplay(GEO_PATH)
+    display(GEO_PATH)
     tiffManage('./processed/output.tif') #WILL NOT IDENTIFY 32 BIT FILE
-    #splits = split_image.split_image('output2.tif', 8, 8, False, False, output_dir='./processed')
+    splits = split_image.split_image('processed/resized.tif', 8, 8, False, False, output_dir='./processed/splits')
     #print(skimage.io.imread((GEO_PATH))) # displays rgb values
