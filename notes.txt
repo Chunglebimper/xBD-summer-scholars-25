@@ -3,6 +3,8 @@ The PIL library cannot handle these images but it can handle downscaled version
 Alpha means how transparent a pixel is where 0 is (fully) transparent and 255 is opaque
 The increased resolution size of 1262 from 1024 causes averaging of pixels in the stretched area (ie. not raw data)
 
+UPDATE:
+IMAGES ARE NOW DISPLAYED AS THEY SHOULD BE IN FULL 1024 x 1024 WHILE ALSO BEING SEPERATED INTO BANDS
+
 TODO
-Seperate RGB values
-Manage alpha values
+Manage alpha values (may not be necessary)
