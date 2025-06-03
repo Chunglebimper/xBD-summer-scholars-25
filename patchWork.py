@@ -101,8 +101,8 @@ GEO_PATH = 'geotiffs/tier1/images/mexico-earthquake_00000049_post_disaster.tif'
 #############################################################################################################
 
 if __name__ == '__main__':
-    TweakedDisplay(GEO_PATH)
-    display(GEO_PATH)
-    tiffManage('./processed/output.tif') #WILL NOT IDENTIFY 32 BIT FILE
-    splits = split_image.split_image('processed/resized.tif', 8, 8, False, False, output_dir='./processed/splits')
+    #TweakedDisplay(GEO_PATH)
+    #display(GEO_PATH)
+    #tiffManage('./processed/output.tif') #WILL NOT IDENTIFY 32 BIT FILE
+    splits = split_image.split_image('processed/composite_rgb.tif', 64, 64, False, False, output_dir='./processed/splits') # NOT EFFICIENT AT ALL
     #print(skimage.io.imread((GEO_PATH))) # displays rgb values

@@ -1,4 +1,10 @@
 # xBD-summer-scholars-25
+
+WARNING: Running this code on a non Linux machine results in errors. To be fixed: use os.path.join()
+
+### jsonTest.py
+- This file reads in the raw .json file and draws the associated polygons onto the original image. Each polygon is a different color based on the damage classification. Serves as a visual to help understand the expected result.
+
 ### tiffTestingRaw.py 
 - This function reads tiff files of 32-bits using the rasterio library. By a process of converting the image to an array, and transposing the bands, the image is normalized and split into multiple RGB bands before being saved with a full composite image. 
 ________________________________

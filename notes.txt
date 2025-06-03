@@ -7,4 +7,10 @@ UPDATE:
 IMAGES ARE NOW DISPLAYED AS THEY SHOULD BE IN FULL 1024 x 1024 WHILE ALSO BEING SEPERATED INTO BANDS
 
 TODO
-Manage alpha values (may not be necessary)
+Research one-shot few shot learning techniques
+Augmentation?
+When the pictures are split, will I need to worry about bleeding between images?
+When code is done, allow it to be ran through terminal
+
+Resources:
+https://www.kaggle.com/code/bhuvannm/xbd-preprocessing
