@@ -1,0 +1,10 @@
+pillow
+numpy
+pandas
+shapely
+matplotlib
+rasterio
+scikit-image
+matplotlib
+opencv-python
+tifffile
