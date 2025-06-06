@@ -2,6 +2,9 @@
 
 WARNING: Running this code on a non Linux machine results in errors. To be fixed: use os.path.join()
 
+### justWork.py (WIP)
+- Reads RGB values of downsized image and returns the means of RGB respecitvely
+
 ### jsonTest.py
 - This file reads in the raw .json file and draws the associated polygons onto the original image. Each polygon is a different color based on the damage classification. Serves as a visual to help understand the expected result.
 

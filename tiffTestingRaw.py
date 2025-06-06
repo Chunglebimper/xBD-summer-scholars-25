@@ -40,11 +40,11 @@ def viewRaw_tiff(tiff_path):
         => (1024, 1024, 3)
         """
 
-        print(f'Before normalizing: {image_array}')
+        #print(f'Before normalizing: {image_array}')
         if image_array.dtype != np.uint8:           #changes all values to something more readable in RGB (aka normalized)
             print("normalizing...")
             image_array = (255 * (image_array / image_array.max())).astype(np.uint8)
-        print(f'After normalizing: {image_array}')
+        #print(f'After normalizing: {image_array}')
         # saves full composite image
         composite_image = Image.fromarray(image_array, mode='RGB')
         composite_image.save('./processed/composite_rgb.tif')

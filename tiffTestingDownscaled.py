@@ -1,7 +1,8 @@
 from PIL import Image, ImageSequence
 import numpy as np
 import rasterio
-
+global COUNT
+COUNT = 1
 def view_tiff(tiff_path):
     """"
     NOTE: CANNOT ACCEPT 32 BIT IMAGE; must be preprocessed; ROTATES IMAGE
@@ -15,7 +16,7 @@ def view_tiff(tiff_path):
         img = Image.new("RGBA", (1024, 1024)) #create space to draw
         rcount = 0
         ccount = 0
-        np.set_printoptions(threshold=np.inf, linewidth=1024)
+        #np.set_printoptions(threshold=np.inf, linewidth=1024)
         for row in image_array:
             for col in row:
                 temp = ((int(col[0])), int(col[1]), int(col[2]))
@@ -24,7 +25,7 @@ def view_tiff(tiff_path):
                 ccount += 1
             ccount = 0
             rcount += 1
-        img.save("./processed/drawn.tif")
+        img.save(f"../processed/drawn{COUNT}.png")
     except FileNotFoundError:
         print(f"Error: File not found at {tiff_path}")
     except Exception as e:
