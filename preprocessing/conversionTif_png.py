@@ -4,8 +4,6 @@ import numpy as np
 import rasterio
 import os
 
-
-
 def convert_tiff(tiff_path):
     global COUNT
     image_array = np.array(image)

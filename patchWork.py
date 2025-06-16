@@ -1,5 +1,6 @@
 from skimage import io
-import split_image
+#import tkinter as tk
+#import split_image
 import skimage
 import matplotlib.pyplot as plt
 import matplotlib
@@ -103,6 +104,8 @@ GEO_PATH = 'geotiffs/tier1/images/mexico-earthquake_00000049_post_disaster.tif'
 if __name__ == '__main__':
     #TweakedDisplay(GEO_PATH)
     #display(GEO_PATH)
+    location = "/home/caiden/PycharmProjects/Physics-Informed-Deep-Learning-For-Damage-Assessment/data/gt_post/mexico-earthquake_00000002_post_disaster_target.png"
+    display(location)
     #tiffManage('./processed/output.tif') #WILL NOT IDENTIFY 32 BIT FILE
-    splits = split_image.split_image('processed/composite_rgb.tif', 64, 64, False, False, output_dir='./processed/splits') # NOT EFFICIENT AT ALL
+    #splits = split_image.split_image('processed/composite_rgb.tif', 64, 64, False, False, output_dir='./processed/splits') # NOT EFFICIENT AT ALL
     #print(skimage.io.imread((GEO_PATH))) # displays rgb values
