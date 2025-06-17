@@ -96,7 +96,7 @@ for PATH in PATHS:
     os.makedirs(PATH, exist_ok=True)        #automatically handles directory creation
 
 """CONSTANTS"""
-GEO_PATH = 'geotiffs/tier1/images/mexico-earthquake_00000049_post_disaster.tif'
+GEO_PATH = 'geotiffs/reduced_set/mexico-earthquake_00000049_post_disaster.tif'
 #GEO_PATH = "geotiffs/tier3/images/joplin-tornado_00000000_post_disaster.tif" # change to image location
 
 #############################################################################################################

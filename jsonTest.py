@@ -24,8 +24,8 @@ def pretty_print(json_file):
     new_json = json.dumps(data, indent=4)
     print(new_json)
 
-FILENAME = 'geotiffs/tier3/labels/joplin-tornado_00000000_post_disaster.json'
-FILENAME_img = 'geotiffs/tier3/images/joplin-tornado_00000000_pre_disaster.tif'
+FILENAME = 'geotiffs/reduced_set_json/mexico-earthquake_00000000_post_disaster.json'
+FILENAME_img = 'geotiffs/reduced_set/mexico-earthquake_00000000_post_disaster.tif'
 data = load(FILENAME)
 data.items()
 features = data['features']['xy']
