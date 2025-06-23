@@ -31,33 +31,39 @@ for file_number in [0,1,2,3,4,7,8,9,11,13,15,17,18,19,20,21,23,24,27,29,30,31,32
 	else:
 		file_number_o = '00000' + str(file_number)
 
-	print("file number is :" + str(file_number_o))
+	#print("file number is :" + str(file_number_o))
 
-	if os.path.exists('../train/img_pre/mexico-earthquake_%s_pre_disaster.png'%file_number_o):
-		#print("file number is :")
+	if os.path.exists('geotiffs/tier1/images/mexico-earthquake_%s_pre_disaster.tif'%file_number_o):
+		print("file number is :")
 		#print(file_number)
 	# reading images
 		#Image1 = plt.imread('../train/img_pre/mexico-earthquake_%s_pre_disaster.png'%file_number_o)
 		#Image2 = plt.imread('../train/img_post/mexico-earthquake_%s_post_disaster.png'%file_number_o)
 		#Image3 = plt.imread('../train/gt_pre/mexico-earthquake_%s_pre_disaster_target.png'%file_number_o)
 		#Image3 = (Image3 - 0)*255
-		Image4 = plt.imread('../train/gt_post/mexico-earthquake_%s_post_disaster_target.png'%file_number_o)
+		Image4 = plt.imread('geotiffs/tier1/images/mexico-earthquake_%s_pre_disaster.tif'%file_number_o)
 		Image4 = (Image4 - 0)*255
-	Image4.flatten()
-	print(Image4)
-	count_0 = (Image4 == 0).sum()
-	count_1 = (Image4 == 1).sum() 
-	count_2 = (Image4 == 2).sum() 
-	count_3 = (Image4 == 3).sum()  
-	count_4 = (Image4 == 4).sum()
+		Image4.flatten()
+		print(Image4)
+		count_0 = (Image4 == 0).sum()
+		count_1 = (Image4 == 1).sum()
+		count_2 = (Image4 == 2).sum()
+		count_3 = (Image4 == 3).sum()
+		count_4 = (Image4 == 4).sum()
 
-	a = count_0+count_1+a 
-	b = count_2+count_3+count_4+b
+		a = count_0 + count_1 + a
+		b = count_2 + count_3 + count_4 + b
 
-	print(a)
-	print(b)
+		print(a)
+		print(b)
+	else:
+		print(os.path.exists("/geotiffs/tier1/images/mexico-earthquake_%s_pre_disaster.tif'%file_number_o"))
+		continue
 
-print(b/a)
+try:
+	print(b/a)
+except Exception as e:
+	print(e)
 
 
 

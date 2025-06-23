@@ -105,6 +105,7 @@ if __name__ == '__main__':
     #TweakedDisplay(GEO_PATH)
     #display(GEO_PATH)
     location = "/home/caiden/PycharmProjects/Physics-Informed-Deep-Learning-For-Damage-Assessment/data/gt_post/mexico-earthquake_00000002_post_disaster_target.png"
+    location = "processed/fromJSON.png"
     display(location)
     #tiffManage('./processed/output.tif') #WILL NOT IDENTIFY 32 BIT FILE
     #splits = split_image.split_image('processed/composite_rgb.tif', 64, 64, False, False, output_dir='./processed/splits') # NOT EFFICIENT AT ALL

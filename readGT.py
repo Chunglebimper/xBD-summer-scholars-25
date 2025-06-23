@@ -16,6 +16,7 @@ import rasterio
 
 
 PATH = "/home/caiden/PycharmProjects/Physics-Informed-Deep-Learning-For-Damage-Assessment/data/gt_post/mexico-earthquake_00000000_post_disaster_target.png"  # Replace with your TIFF file path
+PATH = "processed/fromJSON.png"
 
 count = 0
 rcount = 0
