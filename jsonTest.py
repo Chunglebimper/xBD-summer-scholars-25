@@ -30,6 +30,7 @@ data = load(FILENAME)
 data.items()
 features = data['features']['xy']
 
+# Open and read filename
 with rasterio.open(FILENAME_img) as src:
     image = src.read([1, 2, 3])  # RGB bands
     image = (255 * (image / image.max())).astype('uint8')  # Normalize for display

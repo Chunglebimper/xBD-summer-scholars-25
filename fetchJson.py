@@ -29,7 +29,7 @@ def pretty_print(json_file):
 
 def black_tif():
     # Image dimensions (width, height)
-    width, height = 512, 512
+    width, height = 1024, 1024
 
     # Create a black image (all zeros)
     black_image = np.zeros((height, width), dtype=np.uint8)
@@ -64,17 +64,17 @@ black_tif()
 ####################################################
 
 with rasterio.open(FILENAME_img) as src:
-    image = src.read([1])  # RGB bands
+    image = src.read(1).squeeze()  # RGB bands
     print(image)
     #image = (255 * (image / image.max())).astype('uint8')  # Normalize for display
 
 
-fig, ax = plt.subplots(dpi=512, figsize=(1, 1), ) #create plot to draw polygons
+fig, ax = plt.subplots(dpi=100, figsize=(10.24, 10.24), ) #create plot to draw polygons
 
 for feature in features:
-    #print(feature['properties']['subtype'])
+    print(feature['properties']['subtype'])
     level_of_destruction = feature['properties']['subtype']
-    #print(feature['wkt'])         # Access the polygon string
+    print(feature['wkt'])         # Access the polygon string
     wkt_str = feature['wkt']
     polygon = wkt.loads(wkt_str)
     coords = [(x, y) for x, y in polygon.exterior.coords]
@@ -84,7 +84,7 @@ for feature in features:
     # Add polygon overlay
     # Determine color of edge
     color = {
-        'no-damage': '#000000', #gren
+        'no-damage': '#eaeaea', #gren
         'minor-damage': '#404040', #yellow
         'moderate-damage': '#808080', #orange
         'major-damage': '#BFBFBF', #red
@@ -95,7 +95,7 @@ for feature in features:
     ax.add_patch(patch)
 
 #ax.set_title("Polygon Overlay on Image")
-plt.gca().invert_yaxis()  # Ensure Y-axis matches image direction
+#plt.gca().invert_yaxis()  # Ensure Y-axis matches image direction
 ax.axis('off')
 plt.subplots_adjust(left=0, right=1, top=1, bottom=0)  # remove padding
 plt.savefig("processed/fromJSON.png", bbox_inches='tight', pad_inches=0)
