@@ -1,7 +1,44 @@
 # xBD-summer-scholars-25
 
-WARNING: Running this code on a non Linux machine results in errors. To be fixed: use os.path.join()
+WARNING: Running this code on a non Linux machine may result in errors. To be fixed: use os.path.join()
 
+### WIP__________.py 
+- The main file meant to extract flood data GT masks as a form of pixels 0-4
+
+_deprecated.py_ includes code that is old and no longer of much use
+
+_jsonTest.py_ is a sister testing file of WIP________________.py
+
+_tools.py_ includes functions that may be useful for troublshooting and testing
+
+File Structure
+~~~
+xBD-summer-scholars-25/
+    ├── geotiffs/
+        ├── hold/
+        ├── reduced_set/
+        ├── reduced_set_json/
+        ├── test/
+        ├── tier1/
+        ├── tier3/
+    ├── notes/
+        ├── notes.txt
+        ├── requirements.txt
+    ├── processed/
+        ├── deprecated.py
+        ├── jsonTest.py
+        ├── tools.py
+        ├── WIP________.py
+        ├── README.md
+
+~~~
+
+
+
+
+
+# _OUTDATED_ BELOW THIS LINE
+_________________________________________________________
 ### justWork.py (WIP)
 - Reads RGB values of downsized image and returns the means of RGB respecitvely
 

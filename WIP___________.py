@@ -15,6 +15,11 @@ from rasterio.transform import from_origin
 import numpy as np
 from PIL import Image, ImageSequence
 
+# 1. Create an image to draw on
+# 2.
+
+
+
 def load(json_file):
     with open(json_file) as f:
         data = json.load(f)
@@ -41,7 +46,7 @@ def black_tif():
 
     # Create a new GeoTIFF file and write the black image
     with rasterio.open(
-            'black_image.tif',
+            './processed/black_image.tif',
             'w',
             driver='GTiff',
             height=height,
@@ -52,14 +57,18 @@ def black_tif():
             transform=transform
     ) as dst:
         dst.write(black_image, 1)
+    print(black_image.dtype)
 
-def json_to_image(FILENAME_img, features, save_path='processed/fromJSON.png'):
-    with rasterio.open(FILENAME_img) as src:
+def json_to_image( features, blackImage='./processed/black_image.tif', save_path='processed/fromJSON.png'):
+    # Call function to create image to draw on
+    black_tif()
+    with rasterio.open(blackImage) as src:
         image = src.read(1).squeeze()  # RGB bands
         #print(image)
         # image = (255 * (image / image.max())).astype('uint8')  # Normalize for display
 
-    fig, ax = plt.subplots(dpi=100, figsize=(10.24, 10.24), )  # create plot to draw polygons
+    # fig = figure_object, ax = axes_object for indexing subplots
+    fig, ax = plt.subplots(dpi=100, figsize=(10.24, 10.24), )
     ##################################################################################################
     # Quantize into 5 bins: 0–51 -> 0, 52–102 -> 1, ..., 204–255 -> 4
     #image = np.floor(image / 255 * 5)
@@ -81,7 +90,7 @@ def json_to_image(FILENAME_img, features, save_path='processed/fromJSON.png'):
         color = {
             'no-damage': '0.2',  # gren
             'minor-damage': '0.4',  # yellow
-            'moderate-damage': '0.5',  # orange
+            'moderate-damage': '0.6',  # orange
             'major-damage': '0.8',  # red
             'destroyed': '1.0',  # purple
         }.get(level_of_destruction, '0.0')  # Default to black if level_of_destruction is invalid
@@ -97,7 +106,19 @@ def json_to_image(FILENAME_img, features, save_path='processed/fromJSON.png'):
     plt.savefig(save_path, bbox_inches='tight', pad_inches=0)
     # plt.show()
     print(f"saved to: {save_path}")
+    os.remove('./processed/black_image.tif')
 
+    """
+    with rasterio.open(save_path) as src:
+        image = src.read()
+    # Quantize into 5 bins: 0–51 -> 0, 52–102 -> 1, ..., 204–255 -> 4
+        image = np.floor(image / 255 * 5)
+        image = np.clip(image, 0, 4).astype(np.uint8)
+        print(image)
+        #image.save(f"processed/fromJSON2.png")
+        finalized = Image.fromarray(image, mode='L')
+        finalized.save(f"processed/fromJSON2.png")
+        """
 
 
 def newDisplayImage(PATH, save_path):
@@ -117,15 +138,16 @@ def newDisplayImage(PATH, save_path):
 
 ##################### RUN ME ########################
 FILENAME = 'geotiffs/reduced_set_json/mexico-earthquake_00000000_post_disaster.json'
-FILENAME_img = "black_image.tif"
 count = 0
 data = load(FILENAME)
 data.items()
 features = data['features']['xy']
-np.set_printoptions(threshold=np.inf, linewidth=512)
-black_tif()
-json_to_image(FILENAME_img, features, save_path='processed/fromJSON.png')
-newDisplayImage(PATH='processed/fromJSON.png', save_path="000000UTPUT")
+#np.set_printoptions(threshold=np.inf, linewidth=512)
+
+json_to_image(features,
+              blackImage = './processed/black_image.tif',
+              save_path='processed/fromJSON.png')
+#newDisplayImage(PATH='processed/fromJSON.png', save_path="000000UTPUT")
 #pretty_print(FILENAME)
 ####################################################
 
