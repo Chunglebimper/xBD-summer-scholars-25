@@ -59,6 +59,7 @@ def black_tif():
         dst.write(black_image, 1)
     print(black_image.dtype)
 
+
 def json_to_image( features, blackImage='./processed/black_image.tif', save_path='processed/fromJSON.png'):
     # Call function to create image to draw on
     black_tif()
@@ -88,12 +89,12 @@ def json_to_image( features, blackImage='./processed/black_image.tif', save_path
         # Add polygon overlay
         # Determine color of edge
         color = {
-            'no-damage': '0.2',  # gren
-            'minor-damage': '0.4',  # yellow
-            'moderate-damage': '0.6',  # orange
-            'major-damage': '0.8',  # red
-            'destroyed': '1.0',  # purple
-        }.get(level_of_destruction, '0.0')  # Default to black if level_of_destruction is invalid
+            'no-damage': '#000000',  # gren
+            'minor-damage': '#010101',  # yellow
+            'moderate-damage': '#020202',  # orange
+            'major-damage': '#030303',  # red
+            'destroyed': '#040404',  # purple
+        }.get(level_of_destruction, '#000000')  # Default to black if level_of_destruction is invalid
 
         patch = patches.Polygon(coords, closed=True, edgecolor=color, facecolor=color, fill=True,
                                 linewidth=0.1)  # create patch with color handling from above
@@ -105,20 +106,23 @@ def json_to_image( features, blackImage='./processed/black_image.tif', save_path
     plt.subplots_adjust(left=0, right=1, top=1, bottom=0)  # remove padding
     plt.savefig(save_path, bbox_inches='tight', pad_inches=0)
     # plt.show()
+
     print(f"saved to: {save_path}")
     os.remove('./processed/black_image.tif')
 
-    """
+
     with rasterio.open(save_path) as src:
         image = src.read()
-    # Quantize into 5 bins: 0–51 -> 0, 52–102 -> 1, ..., 204–255 -> 4
-        image = np.floor(image / 255 * 5)
-        image = np.clip(image, 0, 4).astype(np.uint8)
+        np.shape(image)
+        image = np.delete(image, 0, axis=1)
+        image = np.delete(image, 0, axis=2)
+        image = np.delete(image, 0, axis=1)
+        image = image.squeeze()
+        print(np.shape(image))
         print(image)
-        #image.save(f"processed/fromJSON2.png")
         finalized = Image.fromarray(image, mode='L')
         finalized.save(f"processed/fromJSON2.png")
-        """
+
 
 
 def newDisplayImage(PATH, save_path):
@@ -140,7 +144,7 @@ def newDisplayImage(PATH, save_path):
 FILENAME = 'geotiffs/reduced_set_json/mexico-earthquake_00000000_post_disaster.json'
 count = 0
 data = load(FILENAME)
-data.items()
+#print(data.items())
 features = data['features']['xy']
 #np.set_printoptions(threshold=np.inf, linewidth=512)
 

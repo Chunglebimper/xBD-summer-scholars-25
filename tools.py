@@ -109,7 +109,7 @@ def loopConvertTiff(DIRECTORY="../geotiffs/reduced_set", ):
         with rasterio.open(tiff_file) as src:
             image = src.read()
 
-            global COUNT
+
             image_array = np.array(image)
             image_array = np.transpose(image_array, (1, 2, 0))
             image_array = (255 * (image_array / image_array.max())).astype(np.uint8)
@@ -179,5 +179,5 @@ if __name__ == "__main__":
     for PATH in PATHS:
         os.makedirs(PATH, exist_ok=True)
 
-    rawTiff2composite("geotiffs/reduced_set/mexico-earthquake_00000000_pre_disaster.tif")
-    printRawTiff2array("geotiffs/reduced_set/mexico-earthquake_00000000_pre_disaster.tif")
+    #rawTiff2composite("geotiffs/reduced_set/mexico-earthquake_00000000_pre_disaster.tif")
+    printRawTiff2array("/home/caiden/PycharmProjects/Physics-Informed-Deep-Learning-For-Damage-Assessment/data/gt_post/mexico-earthquake_00000000_post_disaster_target.png")
