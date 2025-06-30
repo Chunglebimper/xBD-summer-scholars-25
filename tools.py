@@ -9,6 +9,7 @@ from PIL import Image
 import rasterio
 from matplotlib import cm
 from pylab import *
+from skimage import io
 
 def openTiff(tiff_path):
     with rasterio.open(tiff_path) as src:
@@ -118,6 +119,14 @@ def loopConvertTiff(DIRECTORY="../geotiffs/reduced_set", ):
             print(f"Saved:\t composite_rgb{COUNT}.png'")
             COUNT += 1
 
+def readGroundTruth(DIRECTORY):
+    with rasterio.open(DIRECTORY) as src:
+        image = src.read()
+
+        image = (255 * image / 4).astype('uint8')
+        Image.fromarray(image, mode='L').show()
+
+
 def WIP_newMeanStd(tiff_path):
     """
     BEWARE OF THE SHAPE OF THE IMAGE COMING IN
@@ -179,5 +188,6 @@ if __name__ == "__main__":
     for PATH in PATHS:
         os.makedirs(PATH, exist_ok=True)
 
-    #rawTiff2composite("geotiffs/reduced_set/mexico-earthquake_00000000_pre_disaster.tif")
-    printRawTiff2array("/home/caiden/PycharmProjects/Physics-Informed-Deep-Learning-For-Damage-Assessment/data/gt_post/mexico-earthquake_00000000_post_disaster_target.png")
+    #rawTiff2composite("/home/caiden/PycharmProjects/Physics-Informed-Deep-Learning-For-Damage-Assessment/data/gt_post/mexico-earthquake_00000004_post_disaster_target.png")
+    readGroundTruth("/home/caiden/PycharmProjects/Physics-Informed-Deep-Learning-For-Damage-Assessment/data/gt_post/mexico-earthquake_00000004_post_disaster_target.png")
+    #printRawTiff2array("/home/caiden/PycharmProjects/Physics-Informed-Deep-Learning-For-Damage-Assessment/data/gt_post/mexico-earthquake_00000000_post_disaster_target.png")
