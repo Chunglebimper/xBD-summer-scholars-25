@@ -133,7 +133,7 @@ def MODIFIED_json_to_image(features, save_path='processed/1_fromJSON_matplot.png
 
         # Create patch with color handling from above
         patch = patches.Polygon(coords, closed=True, edgecolor=color, facecolor=color, fill=True,
-                                linewidth=2, aa = True, rasterized=True)
+                                linewidth=0, aa = False, rasterized=True)
 
         #print(coords)
         for x,y in coords:
